@@ -54,10 +54,10 @@ import { createReactComponent } from './react-component-lib';\n`;
 
   if (outputTarget.includePolyfills && outputTarget.includeDefineCustomElements) {
     sourceImports = `import { ${APPLY_POLYFILLS}, ${REGISTER_CUSTOM_ELEMENTS} } from '${pathToCorePackageLoader}';\n`;
-    registerCustomElements = `${APPLY_POLYFILLS}().then(() => ${REGISTER_CUSTOM_ELEMENTS}());`;
+    registerCustomElements = `${APPLY_POLYFILLS}().then(() => ${REGISTER_CUSTOM_ELEMENTS}(window));`;
   } else if (!outputTarget.includePolyfills && outputTarget.includeDefineCustomElements) {
     sourceImports = `import { ${REGISTER_CUSTOM_ELEMENTS} } from '${pathToCorePackageLoader}';\n`;
-    registerCustomElements = `${REGISTER_CUSTOM_ELEMENTS}();`;
+    registerCustomElements = `${REGISTER_CUSTOM_ELEMENTS}(window);`;
   }
 
   const final: string[] = [
